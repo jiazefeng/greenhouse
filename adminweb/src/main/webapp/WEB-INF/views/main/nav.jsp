@@ -21,6 +21,7 @@
         <li><a href="#"><i class="fa fa-star-o nav_icon"></i>大棚管理<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level collapse">
                 <li><a href="../greenhouse/getGreenhouseList">大棚管理</a></li>
+                <li><a href="../production/getProductionList">产量管理</a></li>
             </ul>
         </li>
         <li>
@@ -44,6 +45,13 @@
             </a>
             <ul class="nav nav-second-level collapse">
                 <li><a href="../dataAnalysis/getDataIndex">数据分析</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-star-o nav_icon"></i>新闻管理<span class="fa arrow"></span>
+            </a>
+            <ul class="nav nav-second-level collapse">
+                <li><a href="../news/getNewsList">新闻管理</a></li>
             </ul>
         </li>
     </ul>

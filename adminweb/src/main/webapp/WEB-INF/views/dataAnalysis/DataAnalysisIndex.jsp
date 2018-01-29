@@ -68,12 +68,13 @@
                                 <div style="background: white; solid #efeff5; width: 1020px; overflow: hidden;">
                                     <%--<p id="my_date_set1">日期</p>--%>
                                     <%--<p id="my_date_set2">日期</p>--%>
-                                    <div id="main" style="height:350px; width: 1020px;clear: both; border-top: 10px solid #efeff5;"></div>
+                                    <div id="main"
+                                         style="height:350px; width: 1020px;clear: both; border-top: 10px solid #efeff5;"></div>
                                     <%--<div id="main2" style="height:350px; width: 320px; float: left;"></div>--%>
                                     <div id="main3"
                                          style="height:350px; width: 1020px; clear: both; border-top: 10px solid #efeff5;"></div>
                                     <%--<div id="main4"--%>
-                                         <%--style="height:350px; width: 700px; float: left; border-top: 10px solid #efeff5;"></div>--%>
+                                    <%--style="height:350px; width: 700px; float: left; border-top: 10px solid #efeff5;"></div>--%>
                                     <div id="main5"
                                          style="height:350px; width: 1020px; float: left;border-top: 10px solid #efeff5;"></div>
                                 </div>
@@ -95,58 +96,79 @@
 <script src="/static/js/jquery/macarons .js"></script>
 <script src="/static/js/jquery/common.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         //初始化切换
         $(".animsition").animsition({
 
-            inClass               :   'fade-in-right',
-            outClass              :   'fade-out',
-            inDuration            :    1500,
-            outDuration           :    800,
-            linkElement           :   '.animsition-link',
+            inClass: 'fade-in-right',
+            outClass: 'fade-out',
+            inDuration: 1500,
+            outDuration: 800,
+            linkElement: '.animsition-link',
             // e.g. linkElement   :   'a:not([target="_blank"]):not([href^=#])'
-            loading               :    true,
-            loadingParentElement  :   'body', //animsition wrapper element
-            loadingClass          :   'animsition-loading',
-            unSupportCss          : [ 'animation-duration',
+            loading: true,
+            loadingParentElement: 'body', //animsition wrapper element
+            loadingClass: 'animsition-loading',
+            unSupportCss: ['animation-duration',
                 '-webkit-animation-duration',
                 '-o-animation-duration'
             ],
             //"unSupportCss" option allows you to disable the "animsition" in case the css property in the array is not supported by your browser.
             //The default setting is to disable the "animsition" in a browser that does not support "animation-duration".
 
-            overlay               :   false,
+            overlay: false,
 
-            overlayClass          :   'animsition-overlay-slide',
-            overlayParentElement  :   'body'
+            overlayClass: 'animsition-overlay-slide',
+            overlayParentElement: 'body'
         });
 
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'),'macarons');
+        var myChart = echarts.init(document.getElementById('main'), 'macarons');
 //        var myChart2 = echarts.init(document.getElementById('main2'),'macarons');
-        var myChart3 = echarts.init(document.getElementById('main3'),'macarons');
+        var myChart3 = echarts.init(document.getElementById('main3'), 'macarons');
 //        var myChart4 = echarts.init(document.getElementById('main4'),'macarons');
-        var myChart5 = echarts.init(document.getElementById('main5'),'macarons');
+        var myChart5 = echarts.init(document.getElementById('main5'), 'macarons');
         // 指定图表的配置项和数据
-        var date = ['2018/1/1','2018/1/2','2018/1/3','2018/1/4','2018/1/5','2018/1/6','2018/1/7','2018/1/8','2018/1/9','2018/1/10',
-            '2018/1/11','2018/1/12','2018/1/13','2018/1/14','2018/1/15','2018/1/16','2018/1/17','2018/1/18'
-            ,'2018/1/19','2018/1/20','2018/1/21','2018/1/22','2018/1/23','2018/1/24','2018/1/25','2018/1/26','2018/1/27'
-            ,'2018/1/28','2018/1/29','2018/1/30','2018/1/31'];
+//        var date = ['2018/1/1','2018/1/2','2018/1/3','2018/1/4','2018/1/5','2018/1/6','2018/1/7','2018/1/8','2018/1/9','2018/1/10',
+//            '2018/1/11','2018/1/12','2018/1/13','2018/1/14','2018/1/15','2018/1/16','2018/1/17','2018/1/18'
+//            ,'2018/1/19','2018/1/20','2018/1/21','2018/1/22','2018/1/23','2018/1/24','2018/1/25','2018/1/26','2018/1/27'
+//            ,'2018/1/28','2018/1/29','2018/1/30','2018/1/31'];
+        var date = ['2017-01', '2017-02', '2017-03', '2017-04', '2017-05', '2017-06', '2017-07', '2017-08', '2017-09', '2017-10', '2017-11', '2017-12', '2018-01'];
         var sf_data = [
-            {name: '空气温度',value: Math.round(Math.random()*1000)},
-            {name: '空气湿度',value: Math.round(Math.random()*1000)},
-            {name: '光照',value: Math.round(Math.random()*1000)},
-            {name: '土壤温度',value: Math.round(Math.random()*1000)},
+            {name: '空气温度', value: Math.round(Math.random() * 10)},
+            {name: '空气湿度', value: Math.round(Math.random() * 10)},
+            {name: '光照', value: Math.round(Math.random() * 10)},
+            {name: '土壤温度', value: Math.round(Math.random() * 10)},
+            {name: 'CO2浓度', value: Math.round(Math.random() * 10)},
+            {name: '土壤水分', value: Math.round(Math.random() * 10)},
         ];
 
-        function my_data(){
+        function my_data() {
             var data = [];
-            for( var i =0; i<31; i++){
-                data.push(Math.round(Math.random() * (500 - 100) + 100));
-            };
+            for (var i = 0; i < 31; i++) {
+                data.push(Math.round(Math.random() * (5 - 1) + 1));
+            }
+            ;
             return data;
         }
+        function yield_data() {
+            var data = [];
+            for (var i = 0; i < 31; i++) {
+                data.push(Math.round(Math.random() * (500 - 100) + 100));
+            }
+            ;
+            return data;
+        }
+
         var option = {
+            title: {
+                text: '月产量',
+                /*subtext: '昨日新增：',
+                 subtextStyle: {
+                 fontSize:14,
+                 color : '#ff4a84'
+                 }*/
+            },
             tooltip: {
                 trigger: 'axis',
                 /*formatter: function(data){
@@ -161,30 +183,24 @@
                  }*/
 
             },
-            title: {
-                text: '月产量',
-                /*subtext: '昨日新增：',
-                 subtextStyle: {
-                 fontSize:14,
-                 color : '#ff4a84'
-                 }*/
+            legend: {
+                data: ['黄瓜', '西红柿', '青椒']
             },
-
             toolbox: {
-                show : true,
-                feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: true},
-                    magicType : {show: true, type: ['line', 'bar']},
-                    restore : {show: true},
-                    saveAsImage : {}
+                show: true,
+                feature: {
+                    mark: {show: true},
+                    dataView: {show: true, readOnly: true},
+                    magicType: {show: true, type: ['line', 'bar']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
                 }
             },
-            calculable : true,
+            calculable: true,
             xAxis: {
-                type : 'category',
-                boundaryGap : false,
-                data : date
+                type: 'category',
+                boundaryGap: false,
+                data: date
             },
             yAxis: {
                 type: 'value',
@@ -212,27 +228,85 @@
                 }
             }],
             series: [
+//                {
+//                    name: '黄瓜',
+//                    type: 'line',
+//                    smooth: true,
+//                    itemStyle: {
+//                        normal: {
+//                            color: 'rgb(255, 70, 131)'
+//                        }
+//                    },
+//                    areaStyle: {
+//                        normal: {
+//                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+//                                offset: 0,
+//                                color: 'rgb(255, 158, 68)'
+//                            }, {
+//                                offset: 1,
+//                                color: 'rgb(255, 70, 131)'
+//                            }])
+//                        }
+//                    },
+//                    data: my_data()
+//                }
                 {
-                    name:'新增数',
-                    type:'line',
-                    smooth:true,
-                    itemStyle: {
-                        normal: {
-                            color: 'rgb(255, 70, 131)'
-                        }
-                    },
-                    areaStyle: {
-                        normal: {
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                offset: 0,
-                                color: 'rgb(255, 158, 68)'
-                            }, {
-                                offset: 1,
-                                color: 'rgb(255, 70, 131)'
-                            }])
-                        }
-                    },
-                    data : my_data()
+                    name: '黄瓜',
+                    type: 'line',
+                    stack: '总量',
+                    smooth: true,
+                    barMaxWidth: 30,
+                    //itemStyle: {normal: {areaStyle: {type: 'default'}}},
+//                    areaStyle: {
+//                        normal: {
+//                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+//                                offset: 0,
+//                                color: 'rgb(255, 158, 68)'
+//                            }, {
+//                                offset: 1,
+//                                color: 'rgb(255, 70, 131)'
+//                            }])
+//                        }
+//                    },
+                    data: yield_data()
+                },
+                {
+                    name: '西红柿',
+                    type: 'line',
+                    stack: '总量',
+                    barMaxWidth: 30,
+                    smooth: true,
+//                    areaStyle: {
+//                        normal: {
+//                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+//                                offset: 0,
+//                                color: 'rgb(255, 158, 68)'
+//                            }, {
+//                                offset: 1,
+//                                color: 'rgb(255, 70, 131)'
+//                            }])
+//                        }
+//                    },
+                    data: yield_data()
+                },
+                {
+                    name: '青椒',
+                    type: 'line',
+                    stack: '总量',
+                    barMaxWidth: 30,
+                    smooth: true,
+//                    areaStyle: {
+//                        normal: {
+//                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+//                                offset: 0,
+//                                color: 'rgb(255, 158, 68)'
+//                            }, {
+//                                offset: 1,
+//                                color: 'rgb(255, 70, 131)'
+//                            }])
+//                        }
+//                    },
+                    data: yield_data()
                 }
             ]
         };
@@ -304,39 +378,39 @@
 //            ]
 //        };
         var option3 = {
-            title : {
+            title: {
                 text: '影响产量因数'
             },
-            tooltip : {
+            tooltip: {
                 trigger: 'axis',
                 /* axisPointer : {            // 坐标轴指示器，坐标轴触发有效
                  type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                  }*/
             },
             legend: {
-                data:['空气温度','空气湿度','光照','土壤温度']
+                data: ['空气温度', '空气湿度', '光照', '土壤温度', 'CO2浓度', '土壤水分']
             },
             toolbox: {
-                show : true,
-                feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                    restore : {show: true},
-                    saveAsImage : {show: true}
+                show: true,
+                feature: {
+                    mark: {show: true},
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
                 }
             },
-            calculable : true,
-            xAxis : [
+            calculable: true,
+            xAxis: [
                 {
-                    type : 'category',
-                    boundaryGap : true,
-                    data : date
+                    type: 'category',
+                    boundaryGap: true,
+                    data: date
                 }
             ],
-            yAxis : [
+            yAxis: [
                 {
-                    type : 'value'
+                    type: 'value'
                 }
             ],
             grid: {
@@ -360,35 +434,49 @@
                     shadowOffsetY: 2
                 }
             }],
-            series : [
+            series: [
                 {
-                    name:'空气温度',
-                    type:'bar',
+                    name: '空气温度',
+                    type: 'bar',
                     stack: '总量',
-                    barMaxWidth : 30,
+                    barMaxWidth: 30,
                     //itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                    data:my_data()
+                    data: my_data()
                 },
                 {
-                    name:'空气湿度',
-                    type:'bar',
+                    name: '空气湿度',
+                    type: 'bar',
                     stack: '总量',
                     //itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                    data:my_data()
+                    data: my_data()
                 },
                 {
-                    name:'光照',
-                    type:'bar',
+                    name: '光照',
+                    type: 'bar',
                     stack: '总量',
                     //itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                    data:my_data()
+                    data: my_data()
                 },
                 {
-                    name:'土壤温度',
-                    type:'bar',
+                    name: '土壤温度',
+                    type: 'bar',
                     stack: '总量',
                     //itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                    data:my_data()
+                    data: my_data()
+                },
+                {
+                    name: 'CO2浓度',
+                    type: 'bar',
+                    stack: '总量',
+                    //itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    data: my_data()
+                },
+                {
+                    name: '土壤水分',
+                    type: 'bar',
+                    stack: '总量',
+                    //itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    data: my_data()
                 }
             ]
         };
@@ -473,72 +561,72 @@
 //        };
 
         var option5 = {
-            title : {
+            title: {
                 text: '产量因子合适占比'
             },
             tooltip: {
                 trigger: 'item',
-                formatter: function(data){
+                formatter: function (data) {
                     //console.log(data)
                     myChart.setOption({
-                        title : {
-                            text: '会员数量' + data.value,
+                        title: {
+                            text: '产量因子占比' + data.value,
                         }
                     });
-                    return data.name + '</br>' + '</br>占比：' + data.percent + '%'+'</br>';
+                    return data.name + '</br>' + '</br>占比：' + data.percent + '%' + '</br>';
                 }
             },
             toolbox: {
-                show : true,
-                y : 25,
-                x : 930,
-                feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    restore : {show: true},
-                    saveAsImage : {show: true}
+                show: true,
+                y: 25,
+                x: 930,
+                feature: {
+                    mark: {show: true},
+                    dataView: {show: true, readOnly: false},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
                 }
             },
             legend: {
                 orient: 'horizontal', // 'vertical'
-                icon:'pie',
+                icon: 'pie',
                 // orient: 'vertical',
                 x: 'center',
                 y: 'bottom',
-                selectedMode:true,
-                data:['空气温度','空气湿度','光照','土壤温度']
+                selectedMode: true,
+                data: ['空气温度', '空气湿度', '光照', '土壤温度', 'CO2浓度', '土壤水分']
             },
-            series : [
+            series: [
                 {
-                    name:'产量因子合适占比',
-                    type:'pie',
-                    center:['50%','55%'],
-                    radius : ['40%', '55%'],
+                    name: '产量因子合适占比',
+                    type: 'pie',
+                    center: ['50%', '55%'],
+                    radius: ['40%', '55%'],
                     selectedMode: 'single',
                     itemStyle: {
                         normal: {
-                            label:{
+                            label: {
                                 show: true,
-                                formatter: function(param) {
+                                formatter: function (param) {
                                     return param.name + ' : ' + Math.round(param.percent) + '%';
                                 },
-                                textStyle : {
-                                    fontWeight : 'bolder'
+                                textStyle: {
+                                    fontWeight: 'bolder'
                                 }
                             }
                         },
-                        emphasis : {
-                            label : {
-                                show : true,
-                                position : 'center',
-                                textStyle : {
-                                    fontSize : '30',
-                                    fontWeight : 'bold'
+                        emphasis: {
+                            label: {
+                                show: true,
+                                position: 'center',
+                                textStyle: {
+                                    fontSize: '30',
+                                    fontWeight: 'bold'
                                 }
                             }
                         }
                     },
-                    data:sf_data
+                    data: sf_data
 
                 }
             ]

@@ -2,10 +2,10 @@ package com.hongfeng.greenhouses.service.greenhouse.inf;
 
 import com.hongfeng.common.tool.WebPage;
 import com.hongfeng.greenhouses.domain.greenhouse.dto.GreenhouseDTO;
-import com.hongfeng.greenhouses.domain.greenhouse.dto.GreenhouseDetailDTO;
 import com.hongfeng.greenhouses.domain.greenhouse.dto.GreenhouseDetailsDTO;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -31,4 +31,6 @@ public interface GreenhouseService {
     GreenhouseDetailsDTO getGreenhouseDetailDTOById(String gId);
 
     Map<String,String> getAllGreenhouse();
+
+    boolean fileUpload(HttpServletRequest request, String greenhouseId, String IMAGE_SERVER_URL);
 }

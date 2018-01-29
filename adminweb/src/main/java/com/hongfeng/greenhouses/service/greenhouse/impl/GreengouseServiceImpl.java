@@ -4,13 +4,16 @@ import com.hongfeng.common.tool.*;
 import com.hongfeng.greenhouses.domain.greenhouse.dto.GreenhouseDTO;
 import com.hongfeng.greenhouses.domain.greenhouse.dto.GreenhouseDetailDTO;
 import com.hongfeng.greenhouses.domain.greenhouse.dto.GreenhouseDetailsDTO;
+import com.hongfeng.greenhouses.domain.greenhouse.model.GreenhouseDetailEntity;
 import com.hongfeng.greenhouses.domain.greenhouse.model.GreenhouseEntity;
 import com.hongfeng.greenhouses.domain.greenhouse.repository.GreenhouseRepository;
 import com.hongfeng.greenhouses.service.greenhouse.inf.GreenhouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -39,7 +42,7 @@ public class GreengouseServiceImpl implements GreenhouseService {
                 greenhouseDTO1.setState(greenhouseEntity.getState());
                 greenhouseDTO1.setgCategory(greenhouseEntity.getgCategory());
                 greenhouseDTO1.setAreaCovered(greenhouseEntity.getAreaCovered());
-                greenhouseDTO1.setPlantCategory(greenhouseEntity.getPlantCategory() == null ? "0 ㎡" : greenhouseEntity.getPlantCategory() + " ㎡");
+                greenhouseDTO1.setPlantCategory(greenhouseEntity.getPlantCategory() == null ? "" : greenhouseEntity.getPlantCategory() + "");
 
                 greenhouseDTOS.add(greenhouseDTO1);
             }
@@ -162,5 +165,25 @@ public class GreengouseServiceImpl implements GreenhouseService {
             }
         }
         return units;
+    }
+
+
+    @Override
+    public boolean fileUpload(HttpServletRequest request, String greenhouseId, String IMAGE_SERVER_URL) {
+        LinkedList<MultipartFile> upfileMap = (LinkedList<MultipartFile>) ((DefaultMultipartHttpServletRequest) request).getMultiFileMap().get("file");
+        for (MultipartFile multipartFile : upfileMap) {
+//            if (multipartFile != null && multipartFile.getSize() > 0) {
+            GreenhouseDetailEntity greenhouseDetailEntity = new GreenhouseDetailEntity();
+            greenhouseDetailEntity.setdId(IdGen.uuid());
+            greenhouseDetailEntity.setgId(greenhouseId);
+            greenhouseDetailEntity.setCreateOn(new Date());
+            String imgUrl = UploadFile.imgUpload(multipartFile, IMAGE_SERVER_URL);
+            if (imgUrl != null) {
+                greenhouseDetailEntity.setImgUrl(imgUrl);
+            }
+            greenhouseRepository.saveDeatil(greenhouseDetailEntity);
+//            }
+        }
+        return true;
     }
 }

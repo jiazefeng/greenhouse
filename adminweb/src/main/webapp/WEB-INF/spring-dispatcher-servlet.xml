@@ -34,9 +34,9 @@
     </context:component-scan>
 
     <!--&lt;!&ndash; 开启跨域服务 -->
-    <!--<mvc:cors>-->
-        <!--<mvc:mapping path="/**" allow-credentials="true" allowed-origins="*" allowed-methods="*" max-age="172800"/>-->
-    <!--</mvc:cors>-->
+    <mvc:cors>
+        <mvc:mapping path="/**" allow-credentials="true" allowed-origins="*" allowed-methods="*" max-age="172800"/>
+    </mvc:cors>
 
     <!--&lt;!&ndash;异常解析器-->
     <!--<bean id="simpleMappingExceptionResolver"-->

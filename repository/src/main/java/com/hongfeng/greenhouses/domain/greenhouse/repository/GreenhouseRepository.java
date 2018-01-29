@@ -1,6 +1,7 @@
 package com.hongfeng.greenhouses.domain.greenhouse.repository;
 
 import com.hongfeng.common.tool.WebPage;
+import com.hongfeng.greenhouses.domain.greenhouse.model.GreenhouseDetailEntity;
 import com.hongfeng.greenhouses.domain.greenhouse.model.GreenhouseEntity;
 
 import java.util.List;
@@ -25,4 +26,6 @@ public interface GreenhouseRepository {
     List<Object[]> getGreenhouseDetailDTOById(String gId);
 
     List<GreenhouseEntity> getAllGreenhouse();
+
+    void saveDeatil(GreenhouseDetailEntity greenhouseDetailEntity);
 }

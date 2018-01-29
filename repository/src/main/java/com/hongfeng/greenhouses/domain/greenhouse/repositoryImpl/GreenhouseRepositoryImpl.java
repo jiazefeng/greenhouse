@@ -1,7 +1,9 @@
 package com.hongfeng.greenhouses.domain.greenhouse.repositoryImpl;
 
+import com.hongfeng.common.tool.DateUtils;
 import com.hongfeng.common.tool.IdGen;
 import com.hongfeng.common.tool.WebPage;
+import com.hongfeng.greenhouses.domain.greenhouse.model.GreenhouseDetailEntity;
 import com.hongfeng.greenhouses.domain.greenhouse.model.GreenhouseEntity;
 import com.hongfeng.greenhouses.domain.greenhouse.repository.GreenhouseRepository;
 import com.hongfeng.greenhouses.hibernate.BaseRepositoryImpl;
@@ -72,6 +74,17 @@ public class GreenhouseRepositoryImpl extends BaseRepositoryImpl<GreenhouseEntit
         Query query = getCurrentSession().createQuery(hql);
         List<GreenhouseEntity> greenhouseEntities = query.list();
         return greenhouseEntities;
+    }
+
+    @Override
+    public void saveDeatil(GreenhouseDetailEntity greenhouseDetailEntity) {
+        String sql = "INSERT INTO GREENHOUSE_DETAIL(D_ID,G_ID,IMG_URL,CREATE_ON) VALUES(?,?,?,?)";
+        Query query = getCurrentSession().createSQLQuery(sql);
+        query.setString(0, greenhouseDetailEntity.getdId());
+        query.setString(1, greenhouseDetailEntity.getgId());
+        query.setString(2, greenhouseDetailEntity.getImgUrl());
+        query.setString(3, DateUtils.format(greenhouseDetailEntity.getCreateOn()));
+        query.executeUpdate();
     }
 
 }

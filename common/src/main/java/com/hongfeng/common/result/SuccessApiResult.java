@@ -17,6 +17,11 @@ public class SuccessApiResult extends ApiResult {
         this.addAttribute("data", data);
     }
 
+    public SuccessApiResult(int code, Object data) {
+        this.addAttribute("code", code);
+        this.addAttribute("data", data);
+    }
+
     public SuccessApiResult(Map<Integer, String> codemap, Object data) {
         java.util.Iterator it = codemap.entrySet().iterator();
         Map.Entry entry = (Map.Entry) it.next();

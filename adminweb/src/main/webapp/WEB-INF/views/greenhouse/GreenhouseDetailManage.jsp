@@ -47,6 +47,8 @@
     <link rel="stylesheet" href="/static/css/detailsCss.css"/>
     <link href="/static/css/target.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/zoom.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/easy-upload.css" media="all"/>
+    <script src="/static/js/jquery/easyUpload.js"></script>
 </head>
 
 <body class="cbp-spmenu-push">
@@ -62,9 +64,12 @@
                         <div class="newDetail__" style="">
                             <div class="nav">
                                 <div class="rightButton">
-                                    <a class="btn btn-primary"  href="../greenhouse/getGreenhouseList">返回</a>
+                                    <a class="btn btn-primary" href="../greenhouse/getGreenhouseList">返回</a>
                                 </div>
                             </div>
+
+                            <%--<div id="easyContainer"></div>--%>
+
                             <div class="notice_inner" style="padding-bottom: 40px;width: auto;padding-left: 0;">
                                 <h2 class="sideTitle">大棚名称：<span>${greenhouseDetail.gName}</span></h2>
 
@@ -121,6 +126,35 @@
 </div>
 
 <script src="/static/js/zoom.min.js"></script>
+<script>
+    $('#easyContainer').easyUpload({
+        allowFileTypes: '*.jpg;*.png;*.gif;*.jpeg',//允许上传文件类型，格式';*.doc;*.pdf'
+        allowFileSize: 100000,//允许上传文件大小(KB)
+        selectText: '选择文件',//选择文件按钮文案
+        multi: true,//是否允许多文件上传
+        multiNum: 10,//多文件上传时允许的文件数
+        showNote: true,//是否展示文件上传说明
+        note: '提示：最多上传10个文件，支持格式为png、jpg',//文件上传说明
+        showPreview: true,//是否显示文件预览
+        url: '/greenhouse/file/upload/${greenhouseId}',//上传文件地址
+        fileName: 'file',//文件filename配置参数
+        formParam: {
+//            token: $.cookie('token_cookie')//不需要验证token时可以去掉
+        },//文件filename以外的配置参数，格式：{key1:value1,key2:value2}
+        timeout: 30000,//请求超时时间
+        okCode: 200,//与后端返回数据code值一致时执行成功回调，不配置默认200
+        successFunc: function (res) {
+            console.log('成功回调', res);
+//            window.location = "../greenhouse/getCheckDetailes?gId=" + res.success[res.success.length-1].data;
+        },//上传成功回调函数
+        errorFunc: function (res) {
+            console.log('失败回调', res);
+        },//上传失败回调函数
+        deleteFunc: function (res) {
+            console.log('删除回调', res);
+        }//删除文件回调函数
+    });
+</script>
 <!-- Modal -->
 <!-- main content end-->
 <%@ include file="../main/foolter.jsp" %>
