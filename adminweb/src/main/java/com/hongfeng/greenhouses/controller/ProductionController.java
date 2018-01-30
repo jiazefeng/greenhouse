@@ -11,10 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
-import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -55,5 +54,17 @@ public class ProductionController {
     public String delete(String proId) {
         productionService.delete(proId);
         return "redirect:../production/getProductionList";
+    }
+
+    @RequestMapping(value = "/getAPPProductionList")
+    @ResponseBody
+    public ApiResult getAPPProductionList(WebPage webPage, @Valid ProductionDTO productionDTO) {
+        return productionService.getAPPProductionListByParam(webPage, productionDTO);
+    }
+
+    @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResult toAdd(@Valid  ProductionDTO productionDTO) {
+        return productionService.toAdd(productionDTO);
     }
 }

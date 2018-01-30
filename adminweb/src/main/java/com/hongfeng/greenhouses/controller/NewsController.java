@@ -1,5 +1,6 @@
 package com.hongfeng.greenhouses.controller;
 
+import com.hongfeng.common.result.ApiResult;
 import com.hongfeng.common.tool.WebPage;
 import com.hongfeng.greenhouses.domain.news.dto.NewsDTO;
 import com.hongfeng.greenhouses.service.news.inf.NewsService;
@@ -8,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
@@ -82,5 +80,25 @@ public class NewsController {
             resultMap.put("error", -1);
         }
         return resultMap;
+    }
+
+    //----------------------------前端接口---------------------------------
+
+    /**
+     * 获取新闻数据
+     */
+    @RequestMapping(value = "/getAPPNewsList")
+    @ResponseBody
+    public ApiResult getNewsList(WebPage webPage) {
+        return newsService.getCarousel(webPage);
+    }
+
+    /**
+     * 获取新闻详情
+     */
+    @RequestMapping(value = "/getNewsDetails")
+    @ResponseBody
+    public ApiResult getNewsDetails(@RequestParam String newsId) {
+        return newsService.getNewsDetails(newsId);
     }
 }

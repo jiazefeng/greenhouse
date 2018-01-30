@@ -1,5 +1,6 @@
 package com.hongfeng.greenhouses.service.production.inf;
 
+import com.hongfeng.common.result.ApiResult;
 import com.hongfeng.common.tool.WebPage;
 import com.hongfeng.greenhouses.domain.production.dto.ProductionDTO;
 
@@ -16,4 +17,8 @@ public interface ProductionService {
     void delete(String proId);
 
     ProductionDTO getProductionById(String proId);
+
+    ApiResult getAPPProductionListByParam(WebPage webPage, ProductionDTO productionDTO);
+
+    ApiResult toAdd(ProductionDTO productionDTO);
 }

@@ -1,18 +1,18 @@
 package com.hongfeng.greenhouses.service.news.impl;
 
+import com.hongfeng.common.result.ApiResult;
+import com.hongfeng.common.result.SuccessApiResult;
 import com.hongfeng.common.tool.*;
 import com.hongfeng.greenhouses.domain.news.dto.NewsDTO;
 import com.hongfeng.greenhouses.domain.news.model.NewsEntity;
 import com.hongfeng.greenhouses.domain.news.repository.NewsRepository;
 import com.hongfeng.greenhouses.service.news.inf.NewsService;
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 /**
  * Created by Jiazefeng on 2018/1/27.
@@ -133,5 +133,56 @@ public class NewsServiceImpl implements NewsService {
         if (null != newsEntity) {
             newsRepository.delete(newsEntity);
         }
+    }
+
+    @Override
+    public ApiResult getCarousel(WebPage webPage) {
+        ModelMap modelMap = new ModelMap();
+        List<NewsEntity> newsCarouselList = newsRepository.getNewsListByParam("1");
+        List<NewsEntity> newsList = newsRepository.getNewsListByParam("0");
+        List<NewsDTO> carouselList = new ArrayList<>();
+        List<NewsDTO> newsDTOList = new ArrayList<>();
+        if (newsCarouselList != null && newsCarouselList.size() > 0) {
+            newsCarouselList.forEach(newsEntity -> {
+                NewsDTO newsDTO = new NewsDTO();
+                newsDTO.setNewsId(newsEntity.getNewsId());
+                newsDTO.setNewsTitle(newsEntity.getNewsTitle());
+                newsDTO.setNewsImgUrl(newsEntity.getNewsImgUrl());
+                carouselList.add(newsDTO);
+            });
+        }
+        if (newsList != null && newsList.size() > 0) {
+            newsList.forEach(newsEntity -> {
+                NewsDTO newsDTO = new NewsDTO();
+                newsDTO.setNewsId(newsEntity.getNewsId());
+                newsDTO.setNewsTitle(newsEntity.getNewsTitle());
+                newsDTO.setNewsImgUrl(newsEntity.getNewsImgUrl());
+                newsDTOList.add(newsDTO);
+            });
+        }
+        modelMap.addAttribute("carouselList", carouselList);
+        modelMap.addAttribute("newsDTOList", newsDTOList);
+        return new SuccessApiResult(modelMap);
+    }
+
+    @Override
+    public ApiResult getNewsDetails(String newsId) {
+        ModelMap modelMap = new ModelMap();
+        if (!StringUtil.isEmpty(newsId)) {
+            NewsEntity newsEntity = newsRepository.getNewsEntityById(newsId);
+            if (newsEntity != null) {
+                NewsDTO newsDTO = new NewsDTO();
+                newsDTO.setNewsId(newsEntity.getNewsId());
+                newsDTO.setNewsTitle(newsEntity.getNewsTitle());
+                newsDTO.setNewsSource(newsEntity.getNewsSource());
+                newsDTO.setNewsImgUrl(newsEntity.getNewsImgUrl());
+                newsDTO.setNewsContent(newsEntity.getNewsContent());
+                newsDTO.setSlideShow(newsEntity.getSlideShow());
+                newsDTO.setCreateBy(newsEntity.getCreateByName());
+                newsDTO.setCreateDate(DateUtils.format(newsEntity.getCreateOn(), DateUtils.FORMAT_LONG));
+                modelMap.addAttribute("newsDetails", newsDTO);
+            }
+        }
+        return new SuccessApiResult(modelMap);
     }
 }

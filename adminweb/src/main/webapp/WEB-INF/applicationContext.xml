@@ -47,9 +47,9 @@
         <!--连接池中保留的最小连接数。-->
         <property name="minPoolSize" value="10"/>
         <!--连接池中保留的最大连接数。Default: 15 -->
-        <property name="maxPoolSize" value="100"/>
+        <property name="maxPoolSize" value="1000"/>
         <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
-        <property name="acquireIncrement" value="3"/>
+        <property name="acquireIncrement" value="10"/>
         <!--JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements
 　　属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。
 　　如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0-->
@@ -57,7 +57,7 @@
         <!--maxStatementsPerConnection定义了连接池内单个连接所拥有的最大缓存statements数。Default: 0 -->
         <property name="maxStatementsPerConnection" value="0"></property>
         <!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
-        <property name="idleConnectionTestPeriod" value="60"/>
+        <property name="idleConnectionTestPeriod" value="30"/>
 
         <property name="loginTimeout" value="2000"/>
     </bean>

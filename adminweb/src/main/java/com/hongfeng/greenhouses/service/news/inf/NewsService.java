@@ -1,5 +1,6 @@
 package com.hongfeng.greenhouses.service.news.inf;
 
+import com.hongfeng.common.result.ApiResult;
 import com.hongfeng.common.tool.WebPage;
 import com.hongfeng.greenhouses.domain.news.dto.NewsDTO;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,4 +20,8 @@ public interface NewsService {
     boolean topNews(NewsDTO newsDTO);
 
     void deleteNews(NewsDTO newsDTO);
+
+    ApiResult getCarousel(WebPage webPage);
+
+    ApiResult getNewsDetails(String newsId);
 }
