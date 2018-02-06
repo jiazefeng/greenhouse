@@ -154,7 +154,7 @@
         function yield_data() {
             var data = [];
             for (var i = 0; i < 31; i++) {
-                data.push(Math.round(Math.random() * (500 - 100) + 100));
+                data.push(Math.round(Math.random() * (5000 - 1000) + 1000));
             }
             ;
             return data;
@@ -203,6 +203,7 @@
                 data: date
             },
             yAxis: {
+                name: '产量(KG)',
                 type: 'value',
                 boundaryGap: [0, '100%']
             },

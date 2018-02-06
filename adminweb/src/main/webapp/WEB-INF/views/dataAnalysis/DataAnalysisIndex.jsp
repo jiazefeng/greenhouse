@@ -142,7 +142,8 @@
             {name: 'CO2浓度', value: Math.round(Math.random() * 10)},
             {name: '土壤水分', value: Math.round(Math.random() * 10)},
         ];
-
+        var wendu = [7, 8, 7, 8, 7, 7, 8, 8, 10, 12, 15, 20, 22, 25, 23, 20, 18, 16, 14, 13, 12, 10, 9, 8, 7];
+var shidu=[];
         function my_data() {
             var data = [];
             for (var i = 0; i < 31; i++) {
@@ -151,14 +152,16 @@
             ;
             return data;
         }
+
         function yield_data() {
             var data = [];
             for (var i = 0; i < 31; i++) {
-                data.push(Math.round(Math.random() * (500 - 100) + 100));
+                data.push(Math.round(Math.random() * (5000 - 1000) + 1000));
             }
             ;
             return data;
         }
+
 
         var option = {
             title: {
@@ -203,6 +206,7 @@
                 data: date
             },
             yAxis: {
+                name: '产量(KG)',
                 type: 'value',
                 boundaryGap: [0, '100%']
             },
